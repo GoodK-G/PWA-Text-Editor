@@ -26,5 +26,12 @@ warmStrategyCache({
 
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
-// TODO: Implement asset caching
+// This will cache the html page and the main images.
+offlineFallback({
+  pageFallback: '/index.html',
+  imageFallback: '/images/logo.png',
+});
+
 registerRoute();
+
+

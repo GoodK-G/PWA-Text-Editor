@@ -1,5 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackPwaManifest = require('webpack-pwa-manifest');
+const WebpackPackManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
@@ -41,6 +41,7 @@ module.exports = () => {
     ],
 
     module: {
+      //This is creating the different rules for when the file is created.
       rules: [
         {
           test: /\.css$/i,
@@ -55,7 +56,19 @@ module.exports = () => {
               presets: ['@babel/preset-env'],
             }
           }
-        }
+        },
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
+            {
+              loader: 'file-loader'
+            }
+          ]
+        },
+        {
+          test: /\.html$/i,
+          loader: 'html-loader',
+        },
         
       ],
     },
