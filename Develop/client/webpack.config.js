@@ -2,7 +2,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackPwaManifest = require('webpack-pwa-manifest');
 const path = require('path');
 const { InjectManifest } = require('workbox-webpack-plugin');
-const CssWebpackPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const Babel = require('babel-loader');
 const Workbox = require('workbox-webpack-plugin');
 const { GenerateSW } = require('workbox-webpack-plugin');
@@ -24,23 +24,38 @@ module.exports = () => {
     //Adding the plugins for the manifest and service worker
     //Adding the CSS loader
     plugins: [
-      CssWebpackPlugin.loader(),
       new HtmlWebpackPlugin({
         template: './src/index.html',
-        filename: 'index.html',
-        chunks: ['main']
+        title: 'Budget Tracker',
       }),
       //Generating the Service Worker
-      GenerateSW({
-        swDest: 'sw.js',      
-      }),
+      new GenerateSW(),
       //Generating the Manifest,
-      
+      new WebpackPackManifest({
+        name: 'Budget Tracker',
+        short_name: 'Budget Tracker',
+        description: 'An application that allows you to track your budget even offline!'
+      }),
+      new MiniCssExtractPlugin(),
       
     ],
 
     module: {
       rules: [
+        {
+          test: /\.css$/i,
+          use: [MiniCssExtractPlugin.loader, 'css-loader']
+        },
+        {
+          test: /\.js$/i,
+          exclude: /(node_modules)|bower_components/,
+          use: {
+            loader: 'bable-loader',
+            options: {
+              presets: ['@babel/preset-env'],
+            }
+          }
+        }
         
       ],
     },
