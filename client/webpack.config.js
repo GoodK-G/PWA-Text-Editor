@@ -23,7 +23,7 @@ module.exports = () => {
     //Adding the CSS loader
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './client/index.html',
         title: 'Budget Tracker',
       }),
       //Generating the Service Worker
@@ -49,7 +49,7 @@ module.exports = () => {
           test: /\.js$/i,
           exclude: /(node_modules)|bower_components/,
           use: {
-            loader: 'bable-loader',
+            loader: 'babel-loader',
             options: {
               presets: ['@babel/preset-env'],
             }
