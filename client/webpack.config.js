@@ -23,7 +23,7 @@ module.exports = () => {
     //Adding the CSS loader
     plugins: [
       new HtmlWebpackPlugin({
-        template: './client/index.html',
+        template: './index.html',
         title: 'Budget Tracker',
       }),
       //Generating the Service Worker
