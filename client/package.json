@@ -9,8 +9,8 @@
   "license": "UNLICENSED",
   "devDependencies": {
     "@babel/core": "^7.15.0",
-    "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+    "@babel/plugin-transform-runtime": "^7.15.0",
     "@babel/preset-env": "^7.15.0",
     "@babel/runtime": "^7.15.3",
     "babel-loader": "^8.2.2",
@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "code-mirror-themes": "^1.0.0",
-    "idb": "^6.1.2"
+    "idb": "^6.1.2",
+    "mini-css-extract-plugin": "^2.7.7"
   }
 }
